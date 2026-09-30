@@ -181,7 +181,9 @@ function ExplorePage() {
                     {selected.distanceKm} km
                   </span>
                   <span>{selected.quantity} left</span>
-                  <span className="text-primary">{formatCountdown(selected.endsAt, now)} left</span>
+                  {now !== null && (
+                    <span className="text-primary">{formatCountdown(selected.endsAt, now)} left</span>
+                  )}
                 </div>
                 <div className="mt-1.5 flex items-center justify-between">
                   <div className="flex items-baseline gap-1.5">

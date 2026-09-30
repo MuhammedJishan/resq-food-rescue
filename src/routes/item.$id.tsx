@@ -41,7 +41,7 @@ function ItemPage() {
 
   const vendor = getVendor(listing.vendorId);
   const fav = favorites.includes(vendor.id);
-  const soldOut = listing.quantity === 0 || listing.endsAt <= now;
+  const soldOut = listing.quantity === 0 || (now !== null && listing.endsAt <= now);
 
   return (
     <div className="mx-auto min-h-screen w-full max-w-md pb-36">
@@ -68,7 +68,7 @@ function ItemPage() {
         </span>
         <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-foreground/85 px-3 py-1.5 text-xs font-bold text-background backdrop-blur">
           <Clock className="h-3.5 w-3.5" />
-          {formatCountdown(listing.endsAt, now)} left
+          {now === null ? "…" : `${formatCountdown(listing.endsAt, now)} left`}
         </span>
       </div>
 

@@ -37,6 +37,9 @@ function greeting() {
 
 function HomePage() {
   const { listings, isPremium } = useApp();
+  // Stable on SSR/first render; real greeting applied after mount.
+  const [hello, setHello] = useState("Good evening");
+  useEffect(() => setHello(greeting()), []);
   const now = Date.now();
   const live = listings.filter((l) => l.endsAt > now && l.quantity > 0);
   const endingSoon = [...live].sort((a, b) => a.endsAt - b.endsAt).slice(0, 6);
