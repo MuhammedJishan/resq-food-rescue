@@ -4,7 +4,7 @@ import { CATEGORY_IMAGES, discountPct, getVendor, type Listing } from "@/lib/dat
 import { formatCountdown, useNow } from "@/hooks/use-countdown";
 
 export function listingImage(l: Listing) {
-  return l.image || CATEGORY_IMAGES[l.category] || CATEGORY_IMAGES.Bakery;
+  return l.image || CATEGORY_IMAGES[l.category] || CATEGORY_IMAGES["Bakery"] || "";
 }
 
 function CountdownBadge({ endsAt, now }: { endsAt: number; now: number }) {
