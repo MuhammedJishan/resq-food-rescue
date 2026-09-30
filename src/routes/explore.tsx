@@ -44,7 +44,7 @@ function ExplorePage() {
 
   const results = useMemo(() => {
     return listings.filter((l) => {
-      if (l.quantity === 0 || l.endsAt <= now) return false;
+      if (l.quantity === 0 || (now !== null && l.endsAt <= now)) return false;
       const vendor = getVendor(l.vendorId);
       if (query) {
         const q = query.toLowerCase();
@@ -52,7 +52,7 @@ function ExplorePage() {
           return false;
       }
       if (category !== "All" && l.category !== category) return false;
-      if (endingSoon && l.endsAt - now > 30 * 60_000) return false;
+      if (endingSoon && now !== null && l.endsAt - now > 30 * 60_000) return false;
       if (under100 && l.rescuePrice >= 100) return false;
       if (near && l.distanceKm > 1) return false;
       return true;

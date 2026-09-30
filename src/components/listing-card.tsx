@@ -99,7 +99,9 @@ export function ListingRow({ listing }: { listing: Listing }) {
             <span className="text-xs text-muted-foreground line-through">₹{listing.originalPrice}</span>
           </div>
           <span className={`text-[11px] font-bold ${ended ? "text-muted-foreground" : "text-leaf"}`}>
-            {ended ? "Sold out" : `${listing.quantity} left · ${formatCountdown(listing.endsAt, now)}`}
+            {ended
+              ? "Sold out"
+              : `${listing.quantity} left${now === null ? "" : ` · ${formatCountdown(listing.endsAt, now)}`}`}
           </span>
         </div>
       </div>
