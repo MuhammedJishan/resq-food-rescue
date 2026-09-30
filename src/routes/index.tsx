@@ -49,7 +49,7 @@ function HomePage() {
     <Page>
       <header className="flex items-center justify-between px-5 pt-6">
         <div>
-          <h1 className="text-xl font-extrabold tracking-tight">{greeting()} 👋</h1>
+          <h1 className="text-xl font-extrabold tracking-tight">{hello} 👋</h1>
           <p className="mt-0.5 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground">
             <MapPin className="h-3.5 w-3.5 text-primary" /> Nearby • Bengaluru
           </p>
