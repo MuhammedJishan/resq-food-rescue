@@ -84,26 +84,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
-  const reserve = useCallback((listingId: string, qty: number): Order | null => {
-    let order: Order | null = null;
-    setListings((ls) =>
-      ls.map((l) => {
-        if (l.id !== listingId || l.quantity < qty) return l;
-        order = {
-          id: `o${Date.now()}`,
-          listingId,
-          qty,
-          code: makePickupCode(),
-          status: "active" as const,
-          total: l.rescuePrice * qty,
-          placedAt: "Just now",
-        };
-        return { ...l, quantity: l.quantity - qty };
-      }),
-    );
-    if (order) setOrders((os) => [order!, ...os]);
-    return order;
-  }, []);
+  const reserve = useCallback(
+    (listingId: string, qty: number): Order | null => {
+      const l = listings.find((x) => x.id === listingId);
+      if (!l || l.quantity < qty) return null;
+      const order: Order = {
+        id: `o${Date.now()}`,
+        listingId,
+        qty,
+        code: makePickupCode(),
+        status: "active",
+        total: l.rescuePrice * qty,
+        placedAt: "Just now",
+      };
+      setListings((ls) =>
+        ls.map((x) => (x.id === listingId ? { ...x, quantity: x.quantity - qty } : x)),
+      );
+      setOrders((os) => [order, ...os]);
+      return order;
+    },
+    [listings],
+  );
 
   const cancelOrder = useCallback(
     (orderId: string) => {
