@@ -14,6 +14,8 @@ import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as PlusRouteImport } from './routes/plus'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as VendorRouteImport } from './routes/vendor'
 import { Route as CheckoutIdRouteImport } from './routes/checkout.$id'
 import { Route as ItemIdRouteImport } from './routes/item.$id'
 
@@ -42,6 +44,16 @@ const PlusRoute = PlusRouteImport.update({
   path: '/plus',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorRoute = VendorRouteImport.update({
+  id: '/vendor',
+  path: '/vendor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckoutIdRoute = CheckoutIdRouteImport.update({
   id: '/checkout/$id',
   path: '/checkout/$id',
@@ -59,6 +71,8 @@ export interface FileRoutesByFullPath {
   '/impact': typeof ImpactRoute
   '/orders': typeof OrdersRoute
   '/plus': typeof PlusRoute
+  '/profile': typeof ProfileRoute
+  '/vendor': typeof VendorRoute
   '/checkout/$id': typeof CheckoutIdRoute
   '/item/$id': typeof ItemIdRoute
 }
@@ -68,6 +82,8 @@ export interface FileRoutesByTo {
   '/impact': typeof ImpactRoute
   '/orders': typeof OrdersRoute
   '/plus': typeof PlusRoute
+  '/profile': typeof ProfileRoute
+  '/vendor': typeof VendorRoute
   '/checkout/$id': typeof CheckoutIdRoute
   '/item/$id': typeof ItemIdRoute
 }
@@ -78,6 +94,8 @@ export interface FileRoutesById {
   '/impact': typeof ImpactRoute
   '/orders': typeof OrdersRoute
   '/plus': typeof PlusRoute
+  '/profile': typeof ProfileRoute
+  '/vendor': typeof VendorRoute
   '/checkout/$id': typeof CheckoutIdRoute
   '/item/$id': typeof ItemIdRoute
 }
@@ -89,6 +107,8 @@ export interface FileRouteTypes {
     | '/impact'
     | '/orders'
     | '/plus'
+    | '/profile'
+    | '/vendor'
     | '/checkout/$id'
     | '/item/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +118,8 @@ export interface FileRouteTypes {
     | '/impact'
     | '/orders'
     | '/plus'
+    | '/profile'
+    | '/vendor'
     | '/checkout/$id'
     | '/item/$id'
   id:
@@ -107,6 +129,8 @@ export interface FileRouteTypes {
     | '/impact'
     | '/orders'
     | '/plus'
+    | '/profile'
+    | '/vendor'
     | '/checkout/$id'
     | '/item/$id'
   fileRoutesById: FileRoutesById
@@ -117,6 +141,8 @@ export interface RootRouteChildren {
   ImpactRoute: typeof ImpactRoute
   OrdersRoute: typeof OrdersRoute
   PlusRoute: typeof PlusRoute
+  ProfileRoute: typeof ProfileRoute
+  VendorRoute: typeof VendorRoute
   CheckoutIdRoute: typeof CheckoutIdRoute
   ItemIdRoute: typeof ItemIdRoute
 }
@@ -158,6 +184,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor': {
+      id: '/vendor'
+      path: '/vendor'
+      fullPath: '/vendor'
+      preLoaderRoute: typeof VendorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout/$id': {
       id: '/checkout/$id'
       path: '/checkout/$id'
@@ -181,6 +221,8 @@ const rootRouteChildren: RootRouteChildren = {
   ImpactRoute: ImpactRoute,
   OrdersRoute: OrdersRoute,
   PlusRoute: PlusRoute,
+  ProfileRoute: ProfileRoute,
+  VendorRoute: VendorRoute,
   CheckoutIdRoute: CheckoutIdRoute,
   ItemIdRoute: ItemIdRoute,
 }
