@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Clock, MapPin } from "lucide-react";
-import { discountPct, getVendor, type Listing } from "@/lib/data";
-import { CATEGORY_IMAGES } from "@/lib/data";
+import { CATEGORY_IMAGES, discountPct, getVendor, type Listing } from "@/lib/data";
 import { formatCountdown, useNow } from "@/hooks/use-countdown";
 
 export function listingImage(l: Listing) {

@@ -240,8 +240,8 @@ function ToggleRow({
         }`}
       >
         <span
-          className={`absolute top-0.5 h-6 w-6 rounded-full bg-card shadow transition-transform ${
-            value ? "translate-x-5.5 left-0.5" : "left-0.5"
+          className={`absolute top-0.5 h-6 w-6 rounded-full bg-card shadow transition-all ${
+            value ? "left-[22px]" : "left-0.5"
           }`}
         />
       </button>

@@ -48,7 +48,7 @@ function ItemPage() {
       <div className="relative">
         <img src={listingImage(listing)} alt={listing.name} className="h-72 w-full object-cover" />
         <button
-          onClick={() => navigate({ to: ".." })}
+          onClick={() => navigate({ to: "/" })}
           aria-label="Back"
           className="absolute left-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-card/95 shadow-card"
         >
