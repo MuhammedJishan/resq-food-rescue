@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Bell, MapPin, Search, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Page } from "@/components/bottom-nav";
 import { EndingSoonCard, ListingRow } from "@/components/listing-card";
 import { useApp } from "@/lib/store";
