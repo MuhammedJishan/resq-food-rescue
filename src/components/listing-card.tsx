@@ -7,11 +7,11 @@ export function listingImage(l: Listing) {
   return l.image || CATEGORY_IMAGES[l.category] || CATEGORY_IMAGES["Bakery"] || "";
 }
 
-function CountdownBadge({ endsAt, now }: { endsAt: number; now: number }) {
+function CountdownBadge({ endsAt, now }: { endsAt: number; now: number | null }) {
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-foreground/85 px-2 py-1 text-[11px] font-bold text-background backdrop-blur">
       <Clock className="h-3 w-3" />
-      {formatCountdown(endsAt, now)}
+      {now === null ? "…" : formatCountdown(endsAt, now)}
     </span>
   );
 }
@@ -68,7 +68,7 @@ export function EndingSoonCard({ listing }: { listing: Listing }) {
 export function ListingRow({ listing }: { listing: Listing }) {
   const vendor = getVendor(listing.vendorId);
   const now = useNow(1000);
-  const ended = listing.endsAt <= now || listing.quantity === 0;
+  const ended = (now !== null && listing.endsAt <= now) || listing.quantity === 0;
   return (
     <Link
       to="/item/$id"

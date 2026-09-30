@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 
-/** Re-render tick for countdown UIs. */
-export function useNow(intervalMs = 1000) {
-  const [now, setNow] = useState(() => Date.now());
+/**
+ * Re-render tick for countdown UIs. Returns null until mounted so SSR and
+ * first client render match (no hydration mismatch from Date.now()).
+ */
+export function useNow(intervalMs = 1000): number | null {
+  const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
+    setNow(Date.now());
     const t = setInterval(() => setNow(Date.now()), intervalMs);
     return () => clearInterval(t);
   }, [intervalMs]);
